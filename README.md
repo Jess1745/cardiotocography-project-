@@ -38,7 +38,7 @@ This project analyzes and models fetal health using the CTG dataset from the UCI
 
 ## 📓 Notebook
 
-- See [`ctg_analysis.ipynb`](ctg_analysis.ipynb) for full code and outputs.
+- See [`ctg_analysis.ipynb`](ctg_exploration.ipynb) for full code and outputs.
 
 ## ✅ Next Steps
 
