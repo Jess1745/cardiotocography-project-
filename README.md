@@ -1,3 +1,8 @@
+Team: TM19
+Members: Leong Jia En Jesslyn,
+Tan Bang Kai,
+Chong Yuxuan
+
 # CTG Triage — Datathon Project
 
 This project builds an interpretable, reliable, and calibrated machine learning pipeline to classify **fetal cardiotocography (CTG)** signals into three clinical categories:
