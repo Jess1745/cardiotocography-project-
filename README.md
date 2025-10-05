@@ -19,33 +19,6 @@ The dataset originates from the **UCI CTG Dataset**, containing ~2,000 samples w
 
 ---
 
-## 🧱 Project Structure
-
-CTG_Triage/
-│
-├── notebooks/
-│ └── 02_modeling.ipynb # Main modeling notebook
-│
-├── src/
-│ ├── ctg_features.py # Feature engineering (CTGEngineer)
-│ ├── ctg_prep.py # Preprocessing pipelines
-│ └── ctg_eval.py # Evaluation helpers (if any)
-│
-├── reports/
-│ ├── figures/ # Confusion matrix, ROC, PR, PI, etc.
-│ ├── model_comparison.csv # Model ladder results
-│ ├── calibration_ece_oof.csv # Calibration + ECE values
-│ ├── robustness.txt # 1% noise robustness test
-│ ├── one_pager.md # Project summary (fill in)
-│ └── README.md # (this file)
-│
-├── CTG_clean.csv # Cleaned dataset
-├── requirements.txt # Dependencies
-└── ctg_best_calibrated.joblib # Final calibrated model
-
-
----
-
 ## ⚙️ Pipeline Summary
 
 | Stage | Description |
