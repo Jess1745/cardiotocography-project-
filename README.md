@@ -1,5 +1,5 @@
-Team: TM19
-Members: Leong Jia En Jesslyn,
+**Team:** TM19
+**Members:** Leong Jia En Jesslyn,
 Tan Bang Kai,
 Chong Yuxuan
 
