@@ -34,14 +34,19 @@ This project analyzes and models fetal health using the CTG dataset from the UCI
 
 ## 📊 Results
 
-- [Insert your model’s accuracy, F1-score, or confusion matrix screenshot here]
+Classification Report:
+              precision    recall  f1-score   support
+
+         1.0       0.98      1.00      0.99       332
+         2.0       0.98      0.86      0.92        59
+         3.0       1.00      1.00      1.00        35
+
+    accuracy                           0.98       426
+   macro avg       0.99      0.95      0.97       426
+weighted avg       0.98      0.98      0.98       426
+
 
 ## 📓 Notebook
 
 - See [`ctg_analysis.ipynb`](ctg_exploration.ipynb) for full code and outputs.
 
-## ✅ Next Steps
-
-- Try other models (e.g., SVM, XGBoost)
-- Tune hyperparameters
-- Handle class imbalance (e.g., with SMOTE)
