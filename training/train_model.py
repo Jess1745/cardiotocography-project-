@@ -210,18 +210,48 @@ def main():
 
     try:
         import torch
-        lr = best_pipe_fit.named_steps["clf"] if "clf" in best_pipe_fit.named_steps else None
-        if isinstance(lr, LogisticRegression):
+        clf = best_pipe_fit.named_steps.get("clf", None)
+
+        if isinstance(clf, LogisticRegression):
             state = {
-                "coef_": torch.tensor(lr.coef_, dtype=torch.float32),
-                "intercept_": torch.tensor(lr.intercept_, dtype=torch.float32),
-                "classes_": torch.tensor(lr.classes_, dtype=torch.int64),
-                "note": "Pure LR weights; full preprocessing remains in sklearn pipeline."
+                "type": "logistic_regression",
+                "coef_": torch.tensor(clf.coef_, dtype=torch.float32),
+                "intercept_": torch.tensor(clf.intercept_, dtype=torch.float32),
+                "classes_": torch.tensor(clf.classes_, dtype=torch.int64),
+                "note": "Pure LR weights; preprocessing (scaling, imputation) handled separately in sklearn pipeline."
             }
-            torch.save(state, OUT_MODELS/"ctg_best_linear.pt")
-            print("[OK] Saved ->", OUT_MODELS/"ctg_best_linear.pt")
+
+        elif isinstance(clf, SVC):
+            # SVM doesn’t have traditional linear weights, so we store support vectors instead
+            state = {
+                "type": "svm_rbf",
+                "support_vectors_": torch.tensor(clf.support_vectors_, dtype=torch.float32),
+                "dual_coef_": torch.tensor(clf.dual_coef_, dtype=torch.float32),
+                "intercept_": torch.tensor(clf.intercept_, dtype=torch.float32),
+                "classes_": torch.tensor(clf.classes_, dtype=torch.int64),
+                "note": "SVM (RBF) model — no explicit feature weights, stores kernel support vectors."
+            }
+
+        elif isinstance(clf, RandomForestClassifier):
+            state = {
+                "type": "random_forest",
+                "n_estimators": clf.n_estimators,
+                "feature_importances_": torch.tensor(clf.feature_importances_, dtype=torch.float32),
+                "note": "RandomForest feature importances only — full trees stored in sklearn pipeline."
+            }
+
+        else:
+            state = {
+                "type": str(type(clf)),
+                "note": "Unsupported model type for direct tensor export — saved metadata only."
+            }
+
+        torch.save(state, OUT_MODELS / "ctg_best_linear.pt")
+        print("[OK] Saved ->", OUT_MODELS / "ctg_best_linear.pt")
+
     except Exception as e:
-        print("[WARN] .pt export skipped (install torch to enable). Err:", e)
+        print("[WARN] .pt export skipped (install torch or check model type). Err:", e)
+
 
 if __name__ == "__main__":
     main()
