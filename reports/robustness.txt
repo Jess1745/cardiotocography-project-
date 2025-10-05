@@ -1,0 +1,1 @@
+Delta macro-F1 with 1% numeric noise: -0.0011
