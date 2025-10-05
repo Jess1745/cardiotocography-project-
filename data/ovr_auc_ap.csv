@@ -1,0 +1,4 @@
+class_id,class_name,AUC,AP
+1,Normal,0.9971,0.999
+2,Suspect,0.9918,0.9693
+3,Pathologic,0.9963,0.9833
